@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            min-height: 100vh;
+            background-color: #000;
+            /* 替换你的背景图链接 */
+            background-image: url("bg-img.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            font-family: "思源宋体", serif;
+            color: #f0f0f0;
+            letter-spacing: 1px;
+        }
+        .overlay {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 1;
+        }
+        .wrap {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .main-box {
+            text-align: center;
+            max-width: 640px;
+        }
+        .avatar {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid #777;
+            margin-bottom: 20px;
+        }
+        .verify-tag {
+            border: 1px solid #888;
+            font-size: 12px;
+            padding: 3px 10px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+        h1 {
+            font-size: 36px;
+            font-weight: normal;
+            margin-bottom: 12px;
+        }
+        .base-info {
+            color: #bbb;
+            font-size: 16px;
+            margin-bottom: 28px;
+        }
+        .text-desc {
+            line-height: 1.9;
+            font-size: 17px;
+            margin-bottom: 36px;
+        }
+        .step-tip {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 24px;
+        }
+        .btn-area a {
+            border: 1px solid #ccc;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 30px;
+            margin: 0 10px;
+            transition: 0.3s ease;
+            display: inline-block;
+        }
+        .btn-area a:hover {
+            background: rgba(255,255,255,0.1);
+        }
+        .tag-group {
+            margin-top: 30px;
+        }
+        .tag-group span {
+            border: 1px solid #555;
+            color: #aaa;
+            font-size: 13px;
+            padding: 4px 9px;
+            margin: 5px 4px;
+            display: inline-block;
+        }
+        .step-item {
+            display: none;
+            animation: fade 0.6s forwards;
+        }
+        .step-item.active {
+            display: block;
+        }
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="overlay"></div>
+<div class="wrap">
+    <div class="main-box">
+        <!-- 第一页 首页 -->
+        <div class="step-item active" id="page1">
+            <img class="avatar" src="avatar.jpg" alt="头像">
+            <div class="verify-tag">VERIFIED</div>
+            <h1>你的名字</h1>
+            <div class="base-info">年龄 · 星座 · MBTI</div>
+            <div class="text-desc">
+                个人开场白文案<br>
+                想见我的话别走错地方
+            </div>
+            <div class="step-tip">STEP 01 OF 04 · WELCOME</div>
+            <div class="btn-area">
+                <a href="javascript:switchPage(2)">START / 开始了解</a>
+            </div>
+        </div>
+
+        <!-- 第二页 基础个人资料 -->
+        <div class="step-item" id="page2">
+            <div class="verify-tag">BASIC INFO</div>
+            <h1>个人简介</h1>
+            <div class="base-info">基础信息一览</div>
+            <div class="text-desc">
+                出生地/常驻地点<br>
+                日常爱好、生活习惯<br>
+                简单性格概括
+            </div>
+            <div class="step-tip">STEP 02 OF 04 · INFORMATION</div>
+            <div class="btn-area">
+                <a href="javascript:switchPage(1)">上一页</a>
+                <a href="javascript:switchPage(3)">继续浏览</a>
+            </div>
+        </div>
+
+        <!-- 第三页 细节喜好 -->
+        <div class="step-item" id="page3">
+            <div class="verify-tag">DETAILS</div>
+            <h1>喜好与执念</h1>
+            <div class="base-info">偏爱、雷点、小癖好</div>
+            <div class="text-desc">
+                喜欢的事物<br>
+                反感、抵触的东西<br>
+                独属于我的小习惯
+            </div>
+            <div class="step-tip">STEP 03 OF 04 · MORE DETAILS</div>
+            <div class="btn-area">
+                <a href="javascript:switchPage(2)">上一页</a>
+                <a href="javascript:switchPage(4)">最后一页</a>
+            </div>
+        </div>
+
+        <!-- 第四页 收尾标签页 -->
+        <div class="step-item" id="page4">
+            <div class="verify-tag">END</div>
+            <h1>结语</h1>
+            <div class="base-info">到此为止</div>
+            <div class="text-desc">
+                别用标签定义我<br>
+                有空可以亲自认识我
+            </div>
+            <div class="tag-group">
+                <span>#温柔独处</span>
+                <span>#慢热内敛</span>
+                <span>#氛围感爱好者</span>
+                <span>#自由随性</span>
+            </div>
+            <div class="step-tip">STEP 04 OF 04 · FINISH</div>
+            <div class="btn-area">
+                <a href="javascript:switchPage(1)">返回首页</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+function switchPage(num) {
+    document.querySelectorAll('.step-item').forEach(el=>el.classList.remove('active'));
+    document.getElementById('page'+num).classList.add('active');
+}
+</script>
+</body>
+</html>
